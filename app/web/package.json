@@ -1,0 +1,18 @@
+{
+  "name": "@wordle/web",
+  "version": "0.0.1",
+  "type": "module",
+  "description": "",
+  "scripts": {
+    "build": "echo \"BUILDING WEB\"",
+    "start": "echo \"STARTING WEB\"",
+    "clean": "rm -rf node_modules target"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^22.13.4",
+    "typescript": "^5.7.3"
+  }
+}

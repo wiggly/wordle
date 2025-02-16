@@ -1,0 +1,4 @@
+packages:
+  - 'shared/domain'
+  - 'app/api'
+  - 'app/web'
