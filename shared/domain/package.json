@@ -9,15 +9,9 @@
   },
   "files": ["./src/**/*","./target/**/*"],
   "exports": {
-    "./helper": {
-      "import": "./target/helper.js",
-      "types": "./target/helper.d.ts"
-    }
-  },
-  "xexports": {
-    "./helper": {
-      "import": "./target/**/*.js",
-      "types": "./target/**/*.d.ts"
+    "./*": {
+      "types": "./target/*.d.ts",
+      "import": "./target/*.js"
     }
   },
   "devDependencies": {
