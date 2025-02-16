@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "build": "npx tsc",
-    "start": "node target/server.js",
+    "start": "node target/javascript/server.js",
     "clean": "rm -rf node_modules target"
   },
   "dependencies": {

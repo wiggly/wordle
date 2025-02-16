@@ -7,15 +7,23 @@
     "build": "npx tsc",
     "clean": "rm -rf node_modules target"
   },
-  "files": ["./src/**/*","./target/**/*"],
+  "files": [
+    "./src/**/*",
+    "./target/**/*"
+  ],
   "exports": {
     "./*": {
-      "types": "./target/*.d.ts",
-      "import": "./target/*.js"
+      "types": "./target/types/*.d.ts",
+      "import": "./target/javascript/*.js"
     }
   },
   "devDependencies": {
     "@types/node": "^22.13.4",
+    "@types/uuid": "^10.0.0",
     "typescript": "^5.7.3"
+  },
+  "dependencies": {
+    "uuid": "^11.0.5",
+    "zod": "^3.24.2"
   }
 }
