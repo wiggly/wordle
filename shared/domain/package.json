@@ -1,16 +1,13 @@
 {
   "name": "@wordle/domain",
   "version": "0.0.1",
+  "license": "MIT",
   "type": "module",
-  "description": "",
   "scripts": {
     "build": "npx tsc",
     "clean": "rm -rf node_modules target"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "files": ["./src/*","./target/*"],
+  "files": ["./src/**/*","./target/**/*"],
   "exports": {
     "./helper": {
       "import": "./target/helper.js",

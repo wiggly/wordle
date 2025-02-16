@@ -1,16 +1,13 @@
 {
   "name": "@wordle/api",
   "version": "0.0.1",
+  "license": "MIT",
   "type": "module",
-  "description": "",
   "scripts": {
     "build": "npx tsc",
     "start": "node target/server.js",
     "clean": "rm -rf node_modules target"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "@wordle/domain": "workspace:*"
   },

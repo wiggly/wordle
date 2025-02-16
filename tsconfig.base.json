@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "exactOptionalPropertyTypes": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noUncheckedIndexedAccess": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+
+//    "target": "ESNext",
+//    "module": "ESNext",
+//    "moduleResolution": "bundler",
+        "target": "es5",
+        "module": "NodeNext",
+        "moduleResolution": "nodenext",
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "declaration": true,
+    "incremental": false,
+    "forceConsistentCasingInFileNames": true
+//    "rootDir": "./src",
+//    "outDir": "./target"
+  }}
