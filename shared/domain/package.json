@@ -12,7 +12,7 @@
     "./target/**/*"
   ],
   "exports": {
-    "./*": {
+    "./*.js": {
       "types": "./target/types/*.d.ts",
       "import": "./target/javascript/*.js"
     }

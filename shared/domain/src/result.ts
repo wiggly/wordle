@@ -1,4 +1,4 @@
-import { DomainError } from "./error";
+import { DomainError } from "./error.js";
 
 export type Ok<T> = { value: T };
 
