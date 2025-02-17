@@ -22,6 +22,7 @@ export function createMemoryGameRepository(): GameRepository {
         target: target,
         attempts: [],
         createdAt: new Date(),
+        finished: false
       };
 
       store.set(game.id, game);
@@ -70,6 +71,7 @@ export function createMemoryGameRepository(): GameRepository {
         target: game.target,
         attempts: game.attempts.concat([attempt]),
         createdAt: game.createdAt,
+        finished: attempt.solved
       };
 
       console.log(`new game: ${JSON.stringify(newGame)}`);

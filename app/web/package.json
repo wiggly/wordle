@@ -4,12 +4,20 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "build": "echo \"BUILDING WEB\"",
+    "build": "npx tsc --jsx react-jsx",
     "start": "echo \"STARTING WEB\"",
     "clean": "rm -rf node_modules target"
   },
   "devDependencies": {
     "@types/node": "^22.13.4",
+    "@types/react": "^19.0.9",
+    "@types/react-dom": "^19.0.3",
     "typescript": "^5.7.3"
+  },
+  "dependencies": {
+    "@wordle/domain": "workspace:*",
+
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   }
 }

@@ -19,4 +19,5 @@ export type Game = {
   readonly target: Array<Letter>;
   readonly attempts: Array<Attempt>;
   readonly createdAt: Date;
+  readonly finished: boolean;
 };

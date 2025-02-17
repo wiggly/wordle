@@ -1,0 +1,50 @@
+html {
+    font-family: "Roboto Light, Helvetica, sans-serif";
+}
+
+div.attempt {
+    margin: 1em;
+}
+
+div.game-control span.game-over {
+    color: crimson;
+    text-shadow: black 2px 5px;
+    text-blink: true;
+    text-transform: uppercase;
+    font-size: x-large;
+}
+
+span.letter {
+    width: 2em;
+    padding: 0.5em;
+    margin: 3px;
+    font-size: large;
+    text-transform: uppercase;
+
+    outline-width: 1px;
+    outline-style: solid;
+    outline-color: black;
+}
+
+span.letter.correct {
+    background-color: chartreuse;
+}
+
+span.letter.present {
+    background-color: yellow;
+}
+
+span.letter.incorrect {
+    background-color: lightgrey;
+}
+
+input.letter {
+    width: 2em;
+    padding: 0.5em;
+    margin: 3px;
+    font-size: large;
+    text-transform: uppercase;
+    text-align: center;
+    outline-width: 2px;
+    outline-color: black;
+}
