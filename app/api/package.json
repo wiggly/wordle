@@ -8,11 +8,16 @@
     "start": "node target/javascript/server.js",
     "clean": "rm -rf node_modules target"
   },
-  "dependencies": {
-    "@wordle/domain": "workspace:*"
-  },
   "devDependencies": {
+    "@types/express": "^5.0.0",
     "@types/node": "^22.13.4",
+    "@types/uuid": "^10.0.0",
     "typescript": "^5.7.3"
+  },
+  "dependencies": {
+    "@wordle/domain": "workspace:*",
+    "@ts-rest/core": "^3.52.0",
+    "@ts-rest/express": "^3.52.0",
+    "express": "^4.21.2"
   }
 }

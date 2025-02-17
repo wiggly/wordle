@@ -10,13 +10,28 @@ importers:
 
   app/api:
     dependencies:
+      '@ts-rest/core':
+        specifier: ^3.52.0
+        version: 3.52.0(@types/node@22.13.4)(zod@3.24.2)
+      '@ts-rest/express':
+        specifier: ^3.52.0
+        version: 3.52.0(@ts-rest/core@3.52.0(@types/node@22.13.4)(zod@3.24.2))(express@4.21.2)(zod@3.24.2)
       '@wordle/domain':
         specifier: workspace:*
         version: link:../../shared/domain
+      express:
+        specifier: ^4.21.2
+        version: 4.21.2
     devDependencies:
+      '@types/express':
+        specifier: ^5.0.0
+        version: 5.0.0
       '@types/node':
         specifier: ^22.13.4
         version: 22.13.4
+      '@types/uuid':
+        specifier: ^10.0.0
+        version: 10.0.0
       typescript:
         specifier: ^5.7.3
         version: 5.7.3
@@ -38,9 +53,6 @@ importers:
       '@ts-rest/express':
         specifier: ^3.52.0
         version: 3.52.0(@ts-rest/core@3.52.0(@types/node@22.13.4)(zod@3.24.2))(express@4.21.2)(zod@3.24.2)
-      body-parser:
-        specifier: ^1.20.3
-        version: 1.20.3
       express:
         specifier: ^4.21.2
         version: 4.21.2
@@ -51,9 +63,6 @@ importers:
         specifier: ^3.24.2
         version: 3.24.2
     devDependencies:
-      '@types/body-parser':
-        specifier: ^1.19.5
-        version: 1.19.5
       '@types/express':
         specifier: ^5.0.0
         version: 5.0.0

@@ -1,12 +1,9 @@
 {
   "name": "mono-wordle",
   "version": "1.0.0",
-  "description": "",
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "clean": "rm -rf node_modules target"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  }
 }
