@@ -81,15 +81,46 @@ function GuessForm({submitHandler} : GuessFormProps) {
         return;
     }
 
+    function handleOnInput(id: string) {
+        return (event: React.FormEvent): void => {
+            const input = event.target as HTMLInputElement
+            let trimmed = input.value.trim()
+
+            if(trimmed.length > 0) {
+                input.value = input.value[trimmed.length - 1] || '';
+
+                if(window?.document) {
+                    const element = window.document.getElementById(id)
+                    if(element) {
+                        element.focus();
+                    }
+                }
+            } else {
+                input.value = trimmed
+            }
+            return;
+        }
+    }
+
+    const augmentedSubmit: (e: FormEvent) => void = function (e: FormEvent): void {
+        submitHandler(e)
+        if(window?.document) {
+            const element = window.document.getElementById('letter1')
+            if(element) {
+                element.focus();
+            }
+        }
+    }
+
     return(
         <div className="game-control">
-            <form method="post" onSubmit={submitHandler}>
-                <input name="letter1" className="letter" onFocus={handleOnFocus} />
-                <input name="letter2" className="letter" onFocus={handleOnFocus} />
-                <input name="letter3" className="letter" onFocus={handleOnFocus} />
-                <input name="letter4" className="letter" onFocus={handleOnFocus} />
-                <input name="letter5" className="letter" onFocus={handleOnFocus} />
-                <button type="submit">Guess</button>
+            <form method="post" onSubmit={augmentedSubmit}>
+                <input id={'letter1'} name="letter1" className="letter" onFocus={handleOnFocus} onInput={handleOnInput('letter2')} />
+                <input id={'letter2'} name="letter2" className="letter" onFocus={handleOnFocus} onInput={handleOnInput('letter3')} />
+                <input id={'letter3'} name="letter3" className="letter" onFocus={handleOnFocus} onInput={handleOnInput('letter4')} />
+                <input id={'letter4'} name="letter4" className="letter" onFocus={handleOnFocus} onInput={handleOnInput('letter5')} />
+                <input id={'letter5'} name="letter5" className="letter" onFocus={handleOnFocus} onInput={handleOnInput('submitAttempt')} />
+                <button id={'submitAttempt'} type="submit" >Guess</button>
             </form>
         </div>
     );
