@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "build": "esbuild src/index.tsx src/index.html --bundle --loader:.html=copy --minify --outdir=target",
-    "watch": "esbuild src/index.tsx src/index.html --bundle --loader:.html=copy --outdir=target --watch --servedir=target",
+    "start": "esbuild src/index.tsx src/index.html --bundle --loader:.html=copy --outdir=target --watch --servedir=target",
+    "view": "xdg-open http://localhost:8000/",
     "clean": "rm -rf target",
     "realclean": "rm -rf node_modules target"
   },
