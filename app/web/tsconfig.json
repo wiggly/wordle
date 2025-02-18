@@ -3,11 +3,12 @@
   "compilerOptions": {
     "rootDir": "./src",
     "outDir": "./target/javascript",
-    "declarationDir": "./target/types"
+    "declarationDir": "./target/types",
+    "jsx": "react-jsx"
+
   },
   "include": ["./src/**/*"],
   "exclude": ["node_modules", "target"],
 
 
-  "jsx": "react-jsx"
 }

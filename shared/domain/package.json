@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "build": "npx tsc",
-    "clean": "rm -rf node_modules target"
+    "clean": "rm -rf target",
+    "realclean": "rm -rf node_modules target"
   },
   "files": [
     "./src/**/*",

@@ -4,19 +4,20 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "build": "npx tsc --jsx react-jsx",
-    "start": "echo \"STARTING WEB\"",
-    "clean": "rm -rf node_modules target"
+    "build": "esbuild src/index.tsx src/index.html --bundle --loader:.html=copy --minify --outdir=target",
+    "watch": "esbuild src/index.tsx src/index.html --bundle --loader:.html=copy --outdir=target --watch --servedir=target",
+    "clean": "rm -rf target",
+    "realclean": "rm -rf node_modules target"
   },
   "devDependencies": {
     "@types/node": "^22.13.4",
     "@types/react": "^19.0.9",
     "@types/react-dom": "^19.0.3",
+    "esbuild": "^0.25.0",
     "typescript": "^5.7.3"
   },
   "dependencies": {
     "@wordle/domain": "workspace:*",
-
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   }
