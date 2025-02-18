@@ -1,6 +1,6 @@
 import React, {FormEvent, useState} from 'react';
 import { createGameService } from "@wordle/domain/gameServiceImpl.js";
-import { createMemoryGameRepository } from "@wordle/domain/adapter/memoryGameRepository.js";
+import { createMemoryGameRepository } from "@wordle/memory-repository/adapter/memoryGameRepository.js";
 import {Game} from "@wordle/domain/game.js";
 import {unwrapResult} from "@wordle/domain/result.js";
 

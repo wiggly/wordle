@@ -1,13 +1,22 @@
 {
-  "name": "@wordle/api",
+  "name": "@wordle/memory-repository",
   "version": "0.0.1",
   "license": "MIT",
   "type": "module",
   "scripts": {
     "build": "npx tsc",
-    "start": "node target/javascript/server.js",
     "clean": "rm -rf target",
     "realclean": "rm -rf node_modules target"
+  },
+  "files": [
+    "./src/**/*",
+    "./target/**/*"
+  ],
+  "exports": {
+    "./*.js": {
+      "types": "./target/types/*.d.ts",
+      "import": "./target/javascript/*.js"
+    }
   },
   "devDependencies": {
     "@types/express": "^5.0.0",
@@ -17,9 +26,10 @@
   },
   "dependencies": {
     "@wordle/domain": "workspace:*",
-    "@wordle/memory-repository": "workspace:*",
     "@ts-rest/core": "^3.52.0",
     "@ts-rest/express": "^3.52.0",
-    "express": "^4.21.2"
+    "express": "^4.21.2",
+    "uuid": "^11.0.5",
+    "zod": "^3.24.2"
   }
 }

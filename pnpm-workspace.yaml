@@ -1,4 +1,4 @@
 packages:
-  - 'shared/domain'
+  - 'shared/*'
   - 'app/api'
   - 'app/web'

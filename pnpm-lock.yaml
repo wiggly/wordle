@@ -19,6 +19,9 @@ importers:
       '@wordle/domain':
         specifier: workspace:*
         version: link:../../shared/domain
+      '@wordle/memory-repository':
+        specifier: workspace:*
+        version: link:../../shared/memory-repository
       express:
         specifier: ^4.21.2
         version: 4.21.2
@@ -41,6 +44,9 @@ importers:
       '@wordle/domain':
         specifier: workspace:*
         version: link:../../shared/domain
+      '@wordle/memory-repository':
+        specifier: workspace:*
+        version: link:../../shared/memory-repository
       react:
         specifier: ^19.0.0
         version: 19.0.0
@@ -63,9 +69,6 @@ importers:
       typescript:
         specifier: ^5.7.3
         version: 5.7.3
-      typescript-bundle:
-        specifier: ^1.0.18
-        version: 1.0.18
 
   shared/domain:
     dependencies:
@@ -75,6 +78,40 @@ importers:
       '@ts-rest/express':
         specifier: ^3.52.0
         version: 3.52.0(@ts-rest/core@3.52.0(@types/node@22.13.4)(zod@3.24.2))(express@4.21.2)(zod@3.24.2)
+      express:
+        specifier: ^4.21.2
+        version: 4.21.2
+      uuid:
+        specifier: ^11.0.5
+        version: 11.0.5
+      zod:
+        specifier: ^3.24.2
+        version: 3.24.2
+    devDependencies:
+      '@types/express':
+        specifier: ^5.0.0
+        version: 5.0.0
+      '@types/node':
+        specifier: ^22.13.4
+        version: 22.13.4
+      '@types/uuid':
+        specifier: ^10.0.0
+        version: 10.0.0
+      typescript:
+        specifier: ^5.7.3
+        version: 5.7.3
+
+  shared/memory-repository:
+    dependencies:
+      '@ts-rest/core':
+        specifier: ^3.52.0
+        version: 3.52.0(@types/node@22.13.4)(zod@3.24.2)
+      '@ts-rest/express':
+        specifier: ^3.52.0
+        version: 3.52.0(@ts-rest/core@3.52.0(@types/node@22.13.4)(zod@3.24.2))(express@4.21.2)(zod@3.24.2)
+      '@wordle/domain':
+        specifier: workspace:*
+        version: link:../domain
       express:
         specifier: ^4.21.2
         version: 4.21.2
@@ -591,10 +628,6 @@ packages:
     resolution: {integrity: sha512-TkRKr9sUTxEH8MdfuCSP7VizJyzRNMjj2J2do2Jr3Kym598JVdEksuzPQCnlFPW4ky9Q+iA+ma9BGm06XQBy8g==}
     engines: {node: '>= 0.6'}
 
-  typescript-bundle@1.0.18:
-    resolution: {integrity: sha512-ZtzMZPzW3bnL4c+jBjgSHxlnW9TdWQjFS5RLk4k0YJb85zv78rdslf13mKXUgHZjTeEyO8R59IQ4WqSdlEXhAw==}
-    hasBin: true
-
   typescript@5.7.3:
     resolution: {integrity: sha512-84MVSjMEHP+FQRPy3pX9sTVV/INIex71s9TL2Gm5FG/WG1SqXeKyZ0k7/blY/4FdOzI12CBy1vGc4og/eus0fw==}
     engines: {node: '>=14.17'}
@@ -1099,8 +1132,6 @@ snapshots:
     dependencies:
       media-typer: 0.3.0
       mime-types: 2.1.35
-
-  typescript-bundle@1.0.18: {}
 
   typescript@5.7.3: {}
 

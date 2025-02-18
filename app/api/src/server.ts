@@ -1,6 +1,6 @@
 import express from "express";
 import { createGameService } from "@wordle/domain/gameServiceImpl.js";
-import { createMemoryGameRepository } from "@wordle/domain/adapter/memoryGameRepository.js";
+import { createMemoryGameRepository } from "@wordle/memory-repository/adapter/memoryGameRepository.js";
 import { createHttpGameService } from "@wordle/domain/adapter/httpGameService.js";
 
 const gameService = createGameService(createMemoryGameRepository());

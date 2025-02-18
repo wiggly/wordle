@@ -1,18 +1,18 @@
-import { Letter } from "../letter.js";
-import { Attempt, Game, GameId } from "../game.js";
-import { GameRepository } from "../gameRepository.js";
+import { Letter } from "@wordle/domain/letter.js";
+import { Attempt, Game, GameId } from "@wordle/domain/game.js";
+import { GameRepository } from "@wordle/domain/gameRepository.js";
 import { v4 as uuidv4 } from "uuid";
-import { DomainError } from "../error.js";
+import { DomainError } from "@wordle/domain/error.js";
 import {
   isErr,
   unwrapResult,
-} from "../result.js";
+} from "@wordle/domain/result.js";
 
 import {
   domainError,
   domainResult,
   DomainResult,
-} from "../domainResult.js";
+} from "@wordle/domain/domainResult.js";
 
 export function createMemoryGameRepository(): GameRepository {
   let store: Map<GameId, Game> = new Map();
