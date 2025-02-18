@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { domainErrorResult, domainResult, DomainResult } from "./result.js";
+import { domainError, domainResult, DomainResult } from "./domainResult.js";
 import { DomainError } from "./error.js";
 
 export const LetterEnum = z.enum([
@@ -38,7 +38,7 @@ export function parseLetter(input: string): DomainResult<Letter> {
   if (result.success) {
     return domainResult(result.data);
   } else {
-    return domainErrorResult(DomainError.InvalidLetter);
+    return domainError(DomainError.InvalidLetter);
   }
 }
 

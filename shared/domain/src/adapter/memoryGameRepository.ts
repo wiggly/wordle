@@ -4,12 +4,15 @@ import { GameRepository } from "../gameRepository.js";
 import { v4 as uuidv4 } from "uuid";
 import { DomainError } from "../error.js";
 import {
-  domainErrorResult,
-  domainResult,
-  DomainResult,
   isErr,
   unwrapResult,
 } from "../result.js";
+
+import {
+  domainError,
+  domainResult,
+  DomainResult,
+} from "../domainResult.js";
 
 export function createMemoryGameRepository(): GameRepository {
   let store: Map<GameId, Game> = new Map();
@@ -35,7 +38,7 @@ export function createMemoryGameRepository(): GameRepository {
       if (game) {
         return domainResult(game);
       } else {
-        return domainErrorResult(DomainError.NotFound);
+        return domainError(DomainError.NotFound);
       }
     },
 

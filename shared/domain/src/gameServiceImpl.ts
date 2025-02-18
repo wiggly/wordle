@@ -4,11 +4,13 @@ import { GameService } from "./gameService.js";
 import { GameRepository } from "./gameRepository.js";
 import { DomainError } from "./error.js";
 import {
-  domainErrorResult,
-  DomainResult,
   isOk,
   unwrapResult,
 } from "./result.js";
+import {
+  domainError,
+  DomainResult,
+} from "./domainResult.js";
 
 export function createGameService(repository: GameRepository): GameService {
   return {
@@ -25,7 +27,7 @@ export function createGameService(repository: GameRepository): GameService {
       if (targetLetters.every((result) => isOk(result))) {
         return repository.create(targetLetters.map((x) => unwrapResult(x)));
       } else {
-        return domainErrorResult(DomainError.InvalidLetter);
+        return domainError(DomainError.InvalidLetter);
       }
     },
 

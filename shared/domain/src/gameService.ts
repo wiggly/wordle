@@ -1,6 +1,6 @@
 import { Game, GameId } from "./game.js";
 import { Letter } from "./letter.js";
-import { DomainResult } from "./result.js";
+import { DomainResult } from "./domainResult.js";
 
 export interface GameService {
   createGame(): DomainResult<Game>;
