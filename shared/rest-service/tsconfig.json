@@ -1,0 +1,10 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./target/javascript",
+    "declarationDir": "./target/types",
+  },
+  "include": ["./src/**/*"],
+  "exclude": ["node_modules", "target"]
+}

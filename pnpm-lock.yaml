@@ -22,6 +22,9 @@ importers:
       '@wordle/memory-repository':
         specifier: workspace:*
         version: link:../../shared/memory-repository
+      '@wordle/rest-service':
+        specifier: workspace:*
+        version: link:../../shared/rest-service
       express:
         specifier: ^4.21.2
         version: 4.21.2
@@ -72,15 +75,6 @@ importers:
 
   shared/domain:
     dependencies:
-      '@ts-rest/core':
-        specifier: ^3.52.0
-        version: 3.52.0(@types/node@22.13.4)(zod@3.24.2)
-      '@ts-rest/express':
-        specifier: ^3.52.0
-        version: 3.52.0(@ts-rest/core@3.52.0(@types/node@22.13.4)(zod@3.24.2))(express@4.21.2)(zod@3.24.2)
-      express:
-        specifier: ^4.21.2
-        version: 4.21.2
       uuid:
         specifier: ^11.0.5
         version: 11.0.5
@@ -88,9 +82,6 @@ importers:
         specifier: ^3.24.2
         version: 3.24.2
     devDependencies:
-      '@types/express':
-        specifier: ^5.0.0
-        version: 5.0.0
       '@types/node':
         specifier: ^22.13.4
         version: 22.13.4
@@ -102,6 +93,28 @@ importers:
         version: 5.7.3
 
   shared/memory-repository:
+    dependencies:
+      '@wordle/domain':
+        specifier: workspace:*
+        version: link:../domain
+      uuid:
+        specifier: ^11.0.5
+        version: 11.0.5
+      zod:
+        specifier: ^3.24.2
+        version: 3.24.2
+    devDependencies:
+      '@types/node':
+        specifier: ^22.13.4
+        version: 22.13.4
+      '@types/uuid':
+        specifier: ^10.0.0
+        version: 10.0.0
+      typescript:
+        specifier: ^5.7.3
+        version: 5.7.3
+
+  shared/rest-service:
     dependencies:
       '@ts-rest/core':
         specifier: ^3.52.0
