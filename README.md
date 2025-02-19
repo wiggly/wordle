@@ -1,5 +1,9 @@
 # Wordle
 
+Wordle clone to experiment with Hexagonal pattern in TypeScript code.
+
+
+
 ## Building
 
 Install dependencies.
@@ -23,7 +27,7 @@ pnpm -F @wordle/api run start
 Run an in-browser game bundle web server
 
 ```shell
-pnpm run -F @wordle/web run start
+pnpm -F @wordle/web run start
 ```
 
 Open the previous in-browser game in web browser
@@ -31,3 +35,6 @@ Open the previous in-browser game in web browser
 ```shell
 pnpm -F @wordle/web run view
 ```
+
+
+sss
