@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@wordle/domain": "workspace:*",
-    "@wordle/memory-repository": "workspace:*",
+    "@wordle/memory-game-repository": "workspace:*",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   }

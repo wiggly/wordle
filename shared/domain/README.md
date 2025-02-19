@@ -1,6 +1,6 @@
 # Domain
 
-Domain interfaces and implementations that do not depend on particular infrastructure implementation details such as;
+Domain interfaces and implementations that do __NOT__ depend on particular infrastructure implementation details such as;
 
 * Where our data is stored
 * How the input is being presented to the running process

@@ -1,20 +1,18 @@
 import React, {FormEvent, useState} from 'react';
 import { createGameService } from "@wordle/domain/gameServiceImpl.js";
-import { createMemoryGameRepository } from "@wordle/memory-repository/adapter/memoryGameRepository.js";
-import {Game} from "@wordle/domain/game.js";
-import {unwrapResult} from "@wordle/domain/result.js";
+import { createMemoryGameRepository } from "@wordle/memory-game-repository/adapter/memoryGameRepository.js";
+import {Letter, parseLetter, Game} from "@wordle/domain/entity.js";
+import { Attempt as AttemptElement } from "./Attempt.js";
+import {unwrapDomainResult} from "@wordle/domain/domainResult.js";
 
 import './style.css'
-import {Letter, parseLetter} from "@wordle/domain/letter.js";
-
-import { Attempt as AttemptElement } from "./Attempt.js";
 
 const gameService = createGameService(createMemoryGameRepository());
 
 export default function App() {
 
     const newGame: () => Game = () => {
-        return unwrapResult(gameService.createGame())
+        return unwrapDomainResult(gameService.createGame())
     }
 
     const [currentGame, setCurrentGame] = useState<Game>(newGame);
@@ -39,16 +37,17 @@ export default function App() {
         try {
             const letters: Array<Letter> = input
                 .map(parseLetter)
-                .map(unwrapResult)
+                .map(unwrapDomainResult)
 
-            setCurrentGame(unwrapResult(gameService.processGuess(currentGame, letters)))
+            setCurrentGame(unwrapDomainResult(gameService.processGuess(currentGame, letters)))
         } catch(e) {
             if(e instanceof Error) {
-                alert("Each input can only take a single letter")
+                alert(e.message)
+            } else {
+                alert("Caught something that isn't an Error...")
             }
         } finally {
             form.reset()
-            // move focus to the first input box?
         }
 
         return;

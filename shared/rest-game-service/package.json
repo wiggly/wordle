@@ -1,5 +1,5 @@
 {
-  "name": "@wordle/rest-service",
+  "name": "@wordle/rest-game-service",
   "version": "0.0.1",
   "license": "MIT",
   "type": "module",

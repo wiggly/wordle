@@ -1,5 +1,5 @@
 # Postgres Game Repository
 
-A persistent game store backed by a postgres database
+This is an Adapter for the Domain's `GameRepository` Port that provides an implementation backed by a Postgres RDBMS.
 
 *TODO*

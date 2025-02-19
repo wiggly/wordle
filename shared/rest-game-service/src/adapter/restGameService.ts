@@ -1,29 +1,60 @@
-import { createExpressEndpoints, initServer } from "@ts-rest/express";
-import { Express } from "express";
-import { initContract } from "@ts-rest/core";
-import { z } from "zod";
-import { GameService } from "@wordle/domain/gameService.js";
-import { isErr, isOk, unwrapResult } from "@wordle/domain/result.js";
-import { Attempt, Game } from "@wordle/domain/game.js";
-import { DomainError } from "@wordle/domain/error.js";
-import { Letter, parseLetter } from "@wordle/domain/letter.js";
+import {createExpressEndpoints, initServer} from "@ts-rest/express";
+import {Express} from "express";
+import {initContract} from "@ts-rest/core";
+import {z} from "zod";
+import {GameService} from "@wordle/domain/gameService.js";
+import {isErr, isOk, unwrapResult} from "@wordle/domain/result.js";
+import {Attempt, Game, Letter, parseLetter} from "@wordle/domain/entity.js";
+import {DomainError} from "@wordle/domain/error.js";
 
+/**
+ * LetterAttempt DTO Schema
+ */
 const LetterAttemptSchema = z.object({
     letter: z.string(),
-    state: z.string(),
+    state: z.string(), // TODO: use the LetterState type
 });
 
+/**
+ * Attempt DTO Schema
+ */
 const AttemptSchema = z.object({
     solved: z.boolean(),
     letters: LetterAttemptSchema.array(),
     createdAt: z.date(),
 });
 
+/**
+ * Game DTO Schema
+ */
 const GameSchema = z.object({
     id: z.string(),
     attempts: AttemptSchema.array(),
     createdAt: z.date(),
 });
+
+/**
+ * Error DTO Schema
+ */
+const ErrorSchema = z.object({
+    code: z.string(),
+    message: z.string()
+});
+
+/**
+ * Attempt DTO
+ */
+export type AttemptDto = z.infer<typeof AttemptSchema>;
+
+/**
+ * Game DTO
+ */
+export type GameDto = z.infer<typeof GameSchema>;
+
+/**
+ * Error DTO
+ */
+export type ErrorDto = z.infer<typeof ErrorSchema>;
 
 const c = initContract();
 
@@ -43,7 +74,7 @@ const contract = c.router({
         path: `/game/:id`,
         responses: {
             200: GameSchema,
-            404: c.type<void>(),
+            404: ErrorSchema,
             500: c.type<void>(),
         },
         summary: "Get a game by id",
@@ -53,19 +84,19 @@ const contract = c.router({
         path: `/game/:id/guess`,
         responses: {
             201: GameSchema,
-            404: c.type<void>(),
+            400: ErrorSchema,
+            404: ErrorSchema,
             500: c.type<void>(),
         },
         body: z.object({
             letters: z.string().array(),
+//            TODO: we can think about using Zod directly for this instead of the domain function
+//             but it does give error codes that are easier for us to report on and work with
+//            letters: LetterEnum.array()
         }),
         summary: "Create a new guess for this game",
     },
 });
-
-export type AttemptDto = z.infer<typeof AttemptSchema>;
-
-export type GameDto = z.infer<typeof GameSchema>;
 
 function attemptToDto(attempt: Attempt): AttemptDto {
     return {
@@ -88,9 +119,17 @@ function gameToDto(game: Game): GameDto {
     };
 }
 
+/**
+ * TODO: Let's discuss this in the context of TS-Rest later, I must be missing something.
+ */
+type ErrorResponse =
+    { status: 404; body: { code: string; message: string } } |
+    { status: 400; body: { code: string; message: string } } |
+    { status: 500, body: void }
+
 function domainErrorToResponse(
     err: DomainError,
-) /*: { status: DomainHttpStatusCodes, body?: unknown } */ {
+): ErrorResponse {
     // NOTE: we need to do this for some reason
     const code400: 400 = 400;
     const code404: 404 = 404;
@@ -99,21 +138,42 @@ function domainErrorToResponse(
     if (err == DomainError.NotFound) {
         return {
             status: code404,
-            body: undefined,
+            body: {
+                code: DomainError.NotFound,
+                message: "Could not find that item."
+            },
         };
     } else if (err == DomainError.InvalidLetter) {
         return {
             status: code400,
-            body: undefined,
+            body: {
+                code: DomainError.InvalidLetter,
+                message: "Some or all of the letters you provided are not in the acceptable range."
+            },
+        };
+    } else if (err == DomainError.GameFinished) {
+        return {
+            status: code400,
+            body: {
+                code: DomainError.GameFinished,
+                message: "This game is already finished and cannot be modified."
+            },
         };
     } else {
         return {
             status: code500,
-            body: undefined,
+            body: undefined
         };
     }
 }
 
+/**
+ * Incoming Adapter for GameService
+ *
+ * Function to create a set of HTTP routes that can be served to adapt inputs to call a {@link GameService}
+ *
+ * If the adapter requires any collaborators in future (metrics, logging) they can be passed to this function.
+ */
 export function createHttpGameService(gameService: GameService, app: Express): unknown {
     const server = initServer();
 
@@ -147,7 +207,7 @@ export function createHttpGameService(gameService: GameService, app: Express): u
             const input = letters.map(parseLetter);
             let guess: Array<Letter>;
             if (input.some(isErr)) {
-                // TODO: make it use one of the real errors....
+                // TODO: this assumes the error but we should make it use one of the real errors....
                 return domainErrorToResponse(DomainError.InvalidLetter);
             } else {
                 guess = input.map(unwrapResult);

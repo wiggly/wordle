@@ -1,7 +1,5 @@
-import { Letter } from "@wordle/domain/letter.js";
-import { Attempt, Game, GameId } from "@wordle/domain/game.js";
+import { Letter, Attempt, Game, GameId, createGameId } from "@wordle/domain/entity.js";
 import { GameRepository } from "@wordle/domain/gameRepository.js";
-import { v4 as uuidv4 } from "uuid";
 import { DomainError } from "@wordle/domain/error.js";
 import {
   isErr,
@@ -14,14 +12,24 @@ import {
   DomainResult,
 } from "@wordle/domain/domainResult.js";
 
+/**
+ * Outgoing Adapter for GameRepository
+ *
+ * Function to create/find/construct an implementation
+ *
+ * In this case it is a data object of the correct shape {@link GameRepository} that uses a closure to keep hold of some state.
+ *
+ * This could equally well have been a javascript Class
+ *
+ * If the repository requires any collaborators in future (metrics, logging) they can be passed to this function.
+ */
 export function createMemoryGameRepository(): GameRepository {
   let store: Map<GameId, Game> = new Map();
 
   return {
     create(target: Array<Letter>): DomainResult<Game> {
       const game = {
-        id: uuidv4(),
-        // ugly....how do we do this nicely?
+        id: createGameId(),
         target: target,
         attempts: [],
         createdAt: new Date(),
@@ -40,19 +48,6 @@ export function createMemoryGameRepository(): GameRepository {
       } else {
         return domainError(DomainError.NotFound);
       }
-    },
-
-    update(game: Game): DomainResult<Game> {
-      let current = this.get(game.id);
-
-      // NOTE: this is wild....we are building our own runtime type checks because our language has no idea
-      if (isErr(current)) {
-        return current;
-      }
-
-      store.set(game.id, game);
-
-      return domainResult(game);
     },
 
     appendAttempt(id: GameId, attempt: Attempt): DomainResult<Game> {

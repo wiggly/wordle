@@ -1,9 +1,10 @@
 {
-  "name": "mono-wordle",
-  "version": "1.0.0",
+  "name": "wordle",
+  "version": "0.0.1",
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "clean": "rm -rf node_modules target"
+    "build": "pnpm -r build",
+    "realclean": "rm -rf node_modules"
   }
 }

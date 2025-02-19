@@ -1,0 +1,174 @@
+openapi: 3.0.0
+info:
+  title: Wordle API
+  description: Wordle API
+  version: 0.0.1
+
+servers:
+  - url: http://localhost:3000
+    description: Local development
+
+paths:
+
+  /game:
+    summary: All Wordle Games
+    post:
+      operationId: createGame
+      summary: Create a new Game
+      responses:
+        '201':
+          description: Created Game
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Game'
+        '500':
+          description: Internal server error
+
+  /game/{id}:
+    summary: Specific Wordle Games
+    get:
+      operationId: getGame
+      summary: Gets the Game by ID
+      parameters:
+        - in: path
+          name: id
+          description: Game ID to lookup
+          schema:
+            $ref: '#/components/schemas/GameId'
+          required: true
+      responses:
+        '200':
+          description: Game found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Game'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /game/{id}/guess:
+    summary: Guesses at the solution for a Game
+    post:
+      operationId: createGuess
+      summary: Create a new guess for this Game
+      parameters:
+        - in: path
+          name: id
+          description: Game ID to provide guess for
+          schema:
+            $ref: '#/components/schemas/GameId'
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Guess'
+      responses:
+        '200':
+          description: Guess processed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Game'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+      required:
+        - code
+        - message
+
+    GameId:
+      type: string
+      format: uuid
+      example: '34f261a6-6578-473d-49a5-bde9d5d7cca6'
+
+    LetterAttempt:
+      description: An object representing the letter and its state
+      type: object
+      properties:
+        letter:
+          type: string
+          minLength: 1
+          maxLength: 1
+        state:
+          enum:
+            - Correct
+            - Present
+            - Incorrect
+      required:
+        - letter
+        - state
+
+    Attempt:
+      description: A single attempt to solve a Game
+      type: object
+      properties:
+        solved:
+          type: boolean
+        letters:
+          type: array
+          items:
+            $ref: '#/components/schemas/LetterAttempt'
+        createdAt:
+          type: string
+          format: date-time
+      required:
+        - solved
+        - letters
+        - createdAt
+
+    Game:
+      description: A Wordle Game
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/GameId'
+        attempts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attempt'
+        createdAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - attempts
+        - createdAt
+
+    Guess:
+      description: A guess at the solution to a game
+      type: object
+      properties:
+        letters:
+          type: array
+          items:
+            type: string
+          minLength: 1
+          maxLength: 1
+      required:
+        - letters

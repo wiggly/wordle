@@ -17,8 +17,8 @@
   },
   "dependencies": {
     "@wordle/domain": "workspace:*",
-    "@wordle/memory-repository": "workspace:*",
-    "@wordle/rest-service": "workspace:*",
+    "@wordle/memory-game-repository": "workspace:*",
+    "@wordle/rest-game-service": "workspace:*",
     "@ts-rest/core": "^3.52.0",
     "@ts-rest/express": "^3.52.0",
     "express": "^4.21.2"

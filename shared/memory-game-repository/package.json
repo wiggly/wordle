@@ -1,5 +1,5 @@
 {
-  "name": "@wordle/memory-repository",
+  "name": "@wordle/memory-game-repository",
   "version": "0.0.1",
   "license": "MIT",
   "type": "module",

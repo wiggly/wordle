@@ -1,4 +1,4 @@
-import {LetterAttempt} from "@wordle/domain/game.js";
+import {LetterAttempt} from "@wordle/domain/entity.js";
 
 import './style.css'
 
