@@ -133,6 +133,7 @@ Obvious extensions are already outlined;
 * Add RDBMS store
 * Create HTTP-client adapter for the Game Service so our web game can talk to the API
 * Promise-based APIs
+* Example of how we pass config through the system - i.e. not exposing ENV vars, files, process.env
 * Linting
 * Formatting
 * Tests!

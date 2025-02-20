@@ -14,6 +14,7 @@ import {domainError, DomainResult,} from "./domainResult.js";
  *
  * You can imagine it relying on WordList / Logging / Metrics - yes, even though Logging can be seen as a fairly low-level concern that is not tied to the Domain - but it can still be abstracted away from a particular implementation.
  *
+ * @note any config to be passed to this should be contained within a type defined in the domain and not expose things such as the actual process env or file systems (they may not exist where we are running)
  */
 export function createGameService(repository: GameRepository): GameService {
   return {
