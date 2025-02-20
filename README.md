@@ -32,8 +32,6 @@ It just gives it a handy name so that we can talk about it with a couple of word
 
 [Wikipedia Entry](https://en.wikipedia.org/wiki/Hexagonal_architecture_(software))
 
-TODO: DIAGRAM!!!
-
 # Goals
 
 Show the complete structure of a very simple app with a small Domain model in terms of how it is used with different adapters in a hexagonal architecture without getting bogged down in lots of detail.
@@ -138,3 +136,4 @@ Obvious extensions are already outlined;
 * Linting
 * Formatting
 * Tests!
+* Maybe have more than one target word...
