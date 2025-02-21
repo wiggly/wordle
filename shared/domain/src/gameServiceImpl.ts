@@ -16,7 +16,7 @@ import {domainError, DomainResult,} from "./domainResult.js";
  *
  * @note any config to be passed to this should be contained within a type defined in the domain and not expose things such as the actual process env or file systems (they may not exist where we are running)
  */
-export function createGameService(configuration: Configuration, repository: GameRepository): GameService {
+export function createGameService(repository: GameRepository): GameService {
   return {
     createGame(): DomainResult<Game> {
       // TODO: generate from a word list or pass in a collaborator to retrieve words from

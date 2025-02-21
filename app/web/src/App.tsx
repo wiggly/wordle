@@ -1,13 +1,18 @@
 import React, {FormEvent, useState} from 'react';
 import { createGameService } from "@wordle/domain/gameServiceImpl.js";
-import { createMemoryGameRepository } from "@wordle/memory-game-repository/adapter/memoryGameRepository.js";
+import { MemoryGameRepository } from "@wordle/memory-game-repository/adapter/memoryGameRepository.js";
 import {Letter, parseLetter, Game} from "@wordle/domain/entity.js";
 import { Attempt as AttemptElement } from "./Attempt.js";
 import {unwrapDomainResult} from "@wordle/domain/domainResult.js";
 
 import './style.css'
+import {Configuration} from "@wordle/domain/configuration.js";
 
-const gameService = createGameService(createMemoryGameRepository());
+const configuration: Configuration = {
+    maxAttempts: 5
+}
+
+const gameService = createGameService(new MemoryGameRepository(configuration.maxAttempts));
 
 export default function App() {
 

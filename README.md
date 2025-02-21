@@ -132,8 +132,6 @@ Obvious extensions are already outlined;
 
 ## Priority
 
-* Example of how we pass config through the system - i.e. not exposing ENV vars, files, process.env
-* Fix business logic in repo
 * Tests
 * Maybe have more than one target word...
 
