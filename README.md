@@ -130,11 +130,18 @@ pnpm -F @wordle/web run view
 
 Obvious extensions are already outlined;
 
+## Priority
+
+* Example of how we pass config through the system - i.e. not exposing ENV vars, files, process.env
+* Fix business logic in repo
+* Tests
+* Maybe have more than one target word...
+
+## Outstanding
+
 * Add RDBMS store
 * Create HTTP-client adapter for the Game Service so our web game can talk to the API
 * Promise-based APIs
-* Example of how we pass config through the system - i.e. not exposing ENV vars, files, process.env
 * Linting
 * Formatting
-* Tests!
-* Maybe have more than one target word...
+
