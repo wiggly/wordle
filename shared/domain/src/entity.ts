@@ -43,7 +43,7 @@ export type Letter = z.infer<typeof LetterEnum>;
 
 export function parseLetter(input: string): DomainResult<Letter> {
   const result = LetterEnum.safeParse(input);
-  if (result.success) {
+   if (result.success) {
     return domainResult(result.data);
   } else {
     return domainError(DomainError.InvalidLetter);

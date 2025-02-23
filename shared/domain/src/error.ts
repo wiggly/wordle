@@ -13,6 +13,9 @@ export enum DomainError {
   // You attempted to convert something to a letter, it was found to be invalid
   InvalidLetter = "INVALID_LETTER",
 
+  // You attempted to create a `word` from the wrong number of `Letters`
+  InvalidLength = "INVALID_LENGTH",
+
   // You are attempting to play more moves on a game that has already finished
   GameFinished = "GAME_FINISHED",
 }

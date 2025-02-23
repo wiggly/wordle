@@ -1,16 +1,9 @@
-import { Letter, Attempt, Game, GameId, createGameId } from "@wordle/domain/entity.js";
-import { GameRepository } from "@wordle/domain/gameRepository.js";
-import { DomainError } from "@wordle/domain/error.js";
-import {
-  isErr,
-  unwrapResult,
-} from "@wordle/domain/result.js";
+import {Attempt, createGameId, Game, GameId, Letter} from "@wordle/domain/entity.js";
+import {GameRepository} from "@wordle/domain/gameRepository.js";
+import {DomainError} from "@wordle/domain/error.js";
+import {isErr, unwrapResult,} from "@wordle/domain/result.js";
 
-import {
-  domainError,
-  domainResult,
-  DomainResult,
-} from "@wordle/domain/domainResult.js";
+import {domainError, domainResult, DomainResult,} from "@wordle/domain/domainResult.js";
 
 
 /**
@@ -33,6 +26,11 @@ export class MemoryGameRepository {
   }
 
   create(target: Array<Letter>): DomainResult<Game> {
+    // TODO: magic constant - eliminate this
+    if(target.length != 5) {
+      return domainError(DomainError.InvalidLength)
+    }
+
     const game = {
       id: createGameId(),
       target: target,
@@ -58,8 +56,6 @@ export class MemoryGameRepository {
   appendAttempt(id: GameId, attempt: Attempt): DomainResult<Game> {
     let current = this.get(id);
 
-    console.log(`current: ${current}`);
-
     // NOTE: this is wild....we are building our own runtime type checks because our language has no idea
     if (isErr(current)) {
       return current;
@@ -77,15 +73,13 @@ export class MemoryGameRepository {
       finished: this.isFinished(newAttempts)
     };
 
-    console.log(`new game: ${JSON.stringify(newGame)}`);
-
     this.store.set(newGame.id, newGame);
 
     return domainResult(newGame);
   }
 
   // TODO: debatable if this should be here or simply be a function we can provide for people to use against the
-  //  Game data, however it does allow us to make a nice example of domain config.
+  //  Game data, however it does allow us to make an example of config.
   private isFinished(attempts: Array<Attempt>): boolean {
     if(attempts.length >= this.maxAttempts) {
       return true

@@ -130,11 +130,6 @@ pnpm -F @wordle/web run view
 
 Obvious extensions are already outlined;
 
-## Priority
-
-* Tests
-* Maybe have more than one target word...
-
 ## Outstanding
 
 * Add RDBMS store
@@ -142,4 +137,12 @@ Obvious extensions are already outlined;
 * Promise-based APIs
 * Linting
 * Formatting
+* Provide property based tests for domain port adapters? i.e. Game Repository
 
+## Interesting 
+
+Make the representation of targets and attempts to conform to the letter length requirements at the type level?
+
+## Boring
+
+* Maybe have more than one target word...
