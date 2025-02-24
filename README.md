@@ -12,6 +12,8 @@ The main and abiding win for this pattern is that it provides clear lines that s
 
 This can help you to realise when you are leaking information between these levels and creating incidental coupling rather than modelling inherent coupling between concepts.
 
+Having the domain logic driven through a domain level interface allows us to re-use it in both REST APIs and Streaming contexts where the inputs and outputs are represented differently but the domain logic must remain the same for validation.
+
 The reason I like this pattern over others is not huge, it enshrines the principles;
 
 * "inversion of control"
@@ -22,7 +24,7 @@ The reason I like this pattern over others is not huge, it enshrines the princip
 
 It is actually quite simple and is a pattern that a lot of developers reach in their own way over time. 
 
-It just gives it a handy name so that we can talk about it with a couple of words rather than describing in longform what we mean each time when onboarding new people.
+It gives us a common language so that we can talk about it with a couple of words rather than describing in longform what we mean each time when onboarding new engineers, regardless of experience level.
 
 ## Resources 
 
@@ -40,7 +42,7 @@ Show the complete structure of a very simple app with a small Domain model in te
 
 Production level code. Formatting and linting are ignored.
 
-Source code is organised for ease of browsing not necessarily what would be approriate for a larger project.
+Source code is organised for ease of browsing not necessarily what would be appropriate for a larger project.
 
 # Preempted Questions
 
